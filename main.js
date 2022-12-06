@@ -2,8 +2,14 @@ var camera, scene, renderer, meshes = [], materials = [], geometries = [];
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
 const windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-
 init();
+
+d3.csv("data_TV.csv").then(function(tv_data) {
+    tv_data.forEach(function(d) {
+        d.name = parseTime(d.Date);
+        d.popularity = +d.Popularity;
+    });
+});
 
 function init() {
     // Renderer.
