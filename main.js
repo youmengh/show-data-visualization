@@ -1,5 +1,6 @@
 var camera, scene, renderer, material;
 var meshes = [];
+const geometry0 = new THREE.PlaneGeometry(1000,1000);
 const base = new THREE.MeshBasicMaterial({color: 0x454B1B, side: THREE.DoubleSide});
 init();
 
