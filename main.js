@@ -43,7 +43,9 @@ function init() {
     materials.push(mat);
     mat = new THREE.MeshPhongMaterial({ color: 0x3424bf });       // material 3
     materials.push(mat);
-    mat = new THREE.MeshPhongMaterial({ color: 0x700099 });       // material 4
+    mat = new THREE.MeshPhongMaterial({ color: 0xff010 });       // material 4
+    materials.push(mat);
+    mat = new THREE.MeshPhongMaterial({ color: 0x700099 });       // material 5
     materials.push(mat)
 
     // Create geometry obejcts
@@ -54,12 +56,14 @@ function init() {
     geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 3
     geometries.push(geometry);
     geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 4
+    geometries.push(geometry);
+    geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 5
     geometries.push(geometry)
 
     // Add objects to scene
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 5; i++) {
         mesh = new THREE.Mesh(geometries[i], materials[i]);
-        mesh.position.set((200 * i) - 300, 0, 0);
+        mesh.position.set((200 * i) - 300, -450, 0);
         scene.add(mesh);
         meshes.push(mesh);
     }
