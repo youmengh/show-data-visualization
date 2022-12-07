@@ -1,6 +1,4 @@
-var camera, scene, renderer, meshes = [], materials = [], geometries = [];
-const mouse = new THREE.Vector2();
-const target = new THREE.Vector2(); 
+let camera, scene, renderer;
 
 init();
 
@@ -20,33 +18,14 @@ function init() {
     camera.position.set(0, 0, 600);
     scene.add(camera);
 
-    // Create materials
-    var mat = new THREE.MeshPhongMaterial({ color: 0xff6208 });   // material 1
-    materials.push(mat);
-    mat = new THREE.MeshPhongMaterial({ color: 0xc9c42e });       // material 2
-    materials.push(mat);
-    mat = new THREE.MeshPhongMaterial({ color: 0x3424bf });       // material 3
-    materials.push(mat);
-    mat = new THREE.MeshPhongMaterial({ color: 0xff010 });       // material 4
-    materials.push(mat);
-    mat = new THREE.MeshPhongMaterial({ color: 0x700099 });       // material 5
-    materials.push(mat)
-
     // link data_TV.csv with D3
     d3.csv("data_TV.csv").then(function (data) {
-
-        // Create bars for chart
-        for (var i = 0; i < data.length; i++) {
-            let pop = data[i].popularity;
-            geometries.push(new THREE.BoxGeometry(100, pop, 100));
-        }
-
         // Add objects to scene
         for (var i = 0; i < data.length; i++) {
-            mesh = new THREE.Mesh(geometry[i], materials[i]);
+            let pop = data[i].popularity;
+            mesh = new THREE.Mesh(new THREE.BoxGeometry(100, pop, 100), new THREE.MeshPhongMaterial({ color: 0xff0000 }));
             mesh.position.set((200 * i) - 300, -450, 0);
             scene.add(mesh);
-            meshes.push(mesh);
         }
     });
 
