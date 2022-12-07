@@ -1,24 +1,20 @@
 var camera, scene, renderer, meshes = [], materials = [], geometries = [];
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
-// const windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
-init();
 
+// read data_TV.csv into array 
 let tv_data = [];
-let Name;
-let Popularity;
-let show_data = {Name, Popularity};
 
 d3.csv("data_TV.csv").then(function (data) {
     for (var i = 0; i < data.length; i++) {
-        show_data.Name = data[i].name;
-        show_data.Popularity = data[i].popularity;
+        let show_data = {};
+        show_data['Name'] = data[i].name;
+        show_data['Popularity'] = data[i].popularity;
         tv_data.push(show_data);
     }
 });
 
-console.log(tv_data);
-
+init();
 
 function init() {
     // Renderer.
