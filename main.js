@@ -1,18 +1,6 @@
 var camera, scene, renderer, meshes = [], materials = [], geometries = [];
 const mouse = new THREE.Vector2();
-const target = new THREE.Vector2();
-
-// read data_TV.csv into array 
-let tv_data = [];
-
-d3.csv("data_TV.csv").then(function (data) {
-    for (var i = 0; i < data.length; i++) {
-        let show_data = {};
-        show_data['Name'] = data[i].name;
-        show_data['Popularity'] = data[i].popularity;
-        tv_data.push(show_data);
-    }
-});
+const target = new THREE.Vector2(); 
 
 init();
 
@@ -44,25 +32,23 @@ function init() {
     mat = new THREE.MeshPhongMaterial({ color: 0x700099 });       // material 5
     materials.push(mat)
 
-    // Create geometry obejcts
-    var geometry = new THREE.BoxGeometry(100, 100, 100);    // geometry object 1
-    geometries.push(geometry);
-    geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 2
-    geometries.push(geometry);
-    geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 3
-    geometries.push(geometry);
-    geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 4
-    geometries.push(geometry);
-    geometry = new THREE.BoxGeometry(100, 100, 100);        // geometry object 5
-    geometries.push(geometry)
+    // link data_TV.csv with D3
+    d3.csv("data_TV.csv").then(function (data) {
 
-    // Add objects to scene
-    for (var i = 0; i < 5; i++) {
-        mesh = new THREE.Mesh(geometries[i], materials[i]);
-        mesh.position.set((200 * i) - 300, -450, 0);
-        scene.add(mesh);
-        meshes.push(mesh);
-    }
+        // Create bars for chart
+        for (var i = 0; i < data.length; i++) {
+            let pop = data[i].popularity;
+            geometries.push(new THREE.BoxGeometry(100, pop, 100));
+        }
+
+        // Add objects to scene
+        for (var i = 0; i < data.length; i++) {
+            mesh = new THREE.Mesh(geometry[i], materials[i]);
+            mesh.position.set((200 * i) - 300, -450, 0);
+            scene.add(mesh);
+            meshes.push(mesh);
+        }
+    });
 
     // Create lights and add to scene
     var ambientLight = new THREE.AmbientLight(0x404040);                        // ambient light
@@ -86,7 +72,7 @@ function init() {
     scene.add(ground);
 
     // Add background (plane geometry object)
-    var material = new THREE.MeshBasicMaterial({color: 0x87CEEB, side: THREE.DoubleSide});
+    var material = new THREE.MeshBasicMaterial({ color: 0x87CEEB, side: THREE.DoubleSide });
     geometry = new THREE.SphereGeometry(2000, 2000, 2000);
     const sky = new THREE.Mesh(geometry, material);
     scene.add(sky);
