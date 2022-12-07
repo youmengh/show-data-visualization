@@ -59,7 +59,7 @@ function init() {
     // Add objects to scene
     for (var i = 0; i < 4; i++) {
         mesh = new THREE.Mesh(geometries[i], materials[i]);
-        mesh.position.set((200 * i) - 300, 0, 0);
+        mesh.position.set((200 * i) - 300, -450, 0);
         scene.add(mesh);
         meshes.push(mesh);
     }
