@@ -1,7 +1,7 @@
 var camera, scene, renderer, meshes = [], materials = [], geometries = [];
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
-const windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
+// const windowHalf = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
 init();
 
 let tv_data = [];
@@ -81,17 +81,15 @@ function init() {
     var material = new THREE.MeshBasicMaterial({ color: 0x089c1e });
     var ground = new THREE.Mesh(geometry, material);
     ground.material.side = THREE.DoubleSide;
-    ground.rotation.x = 90;
+    ground.rotation.x = 1.5708;
     ground.position.set(0, -500, 0)
     scene.add(ground);
 
     // Add background (plane geometry object)
-    var geometry = new THREE.PlaneGeometry(2000, 2000, 1, 1);
-    var material = new THREE.MeshBasicMaterial({ color: 0x086ec2 });
-    var ground = new THREE.Mesh(geometry, material);
-    ground.material.side = THREE.DoubleSide;
-    ground.position.set(0, 0, -500)
-    scene.add(ground);
+    var material = new THREE.MeshBasicMaterial({color: 0x87CEEB, side: THREE.DoubleSide});
+    geometry = new THREE.SphereGeometry(2000, 2000, 2000);
+    const sky = new THREE.Mesh(geometry, material);
+    scene.add(sky);
 
     // Add listener for window resize.
     window.addEventListener('resize', onWindowResize, false);
