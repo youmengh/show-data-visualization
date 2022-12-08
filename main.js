@@ -24,7 +24,7 @@ function init() {
         for (var i = 0; i < data.length; i++) {
             let pop = data[i].popularity;
             mesh = new THREE.Mesh(new THREE.BoxGeometry(100, pop, 100), new THREE.MeshPhongMaterial({ color: 0xff0000 }));
-            mesh.position.set((200 * i) - 300, -450, 0);
+            mesh.position.set((200 * i), -450, 0);
             scene.add(mesh);
         }
     });
@@ -47,7 +47,7 @@ function init() {
     var ground = new THREE.Mesh(geometry, material);
     ground.material.side = THREE.DoubleSide;
     ground.rotation.x = 1.5708;
-    ground.position.set(2000, -500, 0)
+    ground.position.set(2300, -500, 0)
     scene.add(ground);
 
     // Add listener for window resize.
@@ -75,10 +75,10 @@ function onkeyPressed(e) {
             camera.position.z += 100;
             break;
         case 'ArrowLeft':
-            camera.position.x -= 100;
+            camera.position.x -= 200;
             break;
         case 'ArrowRight':
-            camera.position.x += 100;
+            camera.position.x += 200;
             break;
         case 'w':
             camera.position.z -= 100;
