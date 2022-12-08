@@ -27,17 +27,17 @@ d3.csv("data_TV.csv").then(function (data) {
         for (let i = 0; i < data.length; i++) {
             let pop = data[i].popularity;   // storing popularity value
             mesh = new THREE.Mesh(new THREE.BoxGeometry(100, pop, 100), new THREE.MeshPhongMaterial({ color: 0xff0000 }));
-            mesh.position.set((200 * i), pop/2, 0);
+            mesh.position.set((200 * i), pop / 2, 0);
             scene.add(mesh);
         }
         // Add base (plane geometry object)
         let baseLength = (data.length * 200);
-        let geometry = new THREE.PlaneGeometry((baseLength+200), 1000, 1, 1);
+        let geometry = new THREE.PlaneGeometry((baseLength + 200), 1000, 1, 1);
         let material = new THREE.MeshBasicMaterial({ color: 0x808080 });
         let ground = new THREE.Mesh(geometry, material);
         ground.material.side = THREE.DoubleSide;
         ground.rotation.x = 1.5708;
-        ground.position.set((baseLength/2)-100, 0, 0)
+        ground.position.set((baseLength / 2) - 100, 0, 0)
         scene.add(ground);
 
         // Create lights and add to scene
@@ -73,15 +73,16 @@ d3.csv("data_TV.csv").then(function (data) {
                     camera.position.x -= 200;
                     index -= 1;
                     break;
-                }else{
+                } else {
                     break;
                 }
             case 'ArrowRight':
                 if (index < (data.length - 1)) {
                     camera.position.x += 200;
                     index += 1;
+                    constructDes(data[index].name, data[index].first_air_date, data[index].popularity);
                     break;
-                }else{
+                } else {
                     break;
                 }
             case 'w':
@@ -95,15 +96,15 @@ d3.csv("data_TV.csv").then(function (data) {
                     camera.position.x -= 200;
                     index -= 1;
                     break;
-                }else{
+                } else {
                     break;
                 }
             case 'd':
-                if (index < (data.length - 1)){
+                if (index < (data.length - 1)) {
                     camera.position.x += 200;
                     index += 1;
                     break;
-                }else{
+                } else {
                     break;
                 }
         }
@@ -121,4 +122,21 @@ d3.csv("data_TV.csv").then(function (data) {
     function render() {
         renderer.render(scene, camera);
     }
+
+    // Add show decriptions
+    function constructDes(showName, airDate, popValue) {
+        var text = document.createElement('div');
+        text.style.position = 'absolute';
+        //text.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
+        text.style.width = 100;
+        text.style.height = 100;
+        text.style.backgroundColor = "blue";
+        text.innerHTML = "Show Name: " + showName + "\n"
+            + "First Air Date: " + airDate + "\n"
+            + "Popularity: " + popValue;
+        text.style.top = 200 + 'px';
+        text.style.left = 200 + 'px';
+        document.body.appendChild(text);
+    }
+
 });
