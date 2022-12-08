@@ -1,5 +1,6 @@
 let camera, scene, renderer;
 let index = 0;
+let showDescriptions = document.createElement('div');
 
 // link data_TV.csv with D3
 d3.csv("data_TV.csv").then(function (data) {
@@ -128,17 +129,16 @@ d3.csv("data_TV.csv").then(function (data) {
 
     // Add show decriptions
     function constructDes(showName, airDate, popValue) {
-        var text = document.createElement('div');
-        text.style.position = 'absolute';
-        //text.style.zIndex = 1;    // if you still don't see the label, try uncommenting this
-        text.style.width = 100;
-        text.style.height = 100;
-        text.style.backgroundColor = "blue";
-        text.innerHTML = "Show Name: " + showName + "\n"
+        showDescriptions.style.position = 'absolute';
+        // showDescriptions.style.zIndex = 1;    // if label still missing, try uncommenting this
+        showDescriptions.style.width = 100;
+        showDescriptions.style.height = 100;
+        showDescriptions.style.backgroundColor = "blue";
+        showDescriptions.innerHTML = "Show Name: " + showName + "\n"
             + "First Air Date: " + airDate + "\n"
             + "Popularity: " + popValue;
-        text.style.top = 200 + 'px';
-        text.style.left = 200 + 'px';
+        showDescriptions.style.top = 200 + 'px';
+        showDescriptions.style.left = 200 + 'px';
         document.body.appendChild(text);
     }
 
