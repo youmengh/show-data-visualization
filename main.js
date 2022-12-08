@@ -1,28 +1,28 @@
 let camera, scene, renderer;
 let index = 0;
 
-init();
+// link data_TV.csv with D3
+d3.csv("data_TV.csv").then(function (data) {
+    init();
 
-function init() {
-    alert(`3D Bar Graph of the Top 50 Most Popular Shows in the World.
-    Press Space to Begin`);
-    // Renderer.
-    renderer = new THREE.WebGLRenderer();
-    // renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth - 100, window.innerHeight - 100);
-    // Add renderer to page
-    document.body.appendChild(renderer.domElement);
+    function init() {
+        alert(`3D Bar Graph of the Top 50 Most Popular Shows in the World.
+        Press OK to Begin`);
+        // Renderer.
+        renderer = new THREE.WebGLRenderer();
+        // renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth - 100, window.innerHeight - 100);
+        // Add renderer to page
+        document.body.appendChild(renderer.domElement);
 
-    // Create scene.
-    scene = new THREE.Scene();
+        // Create scene.
+        scene = new THREE.Scene();
 
-    // Create camera.
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set(0, 500, 1000);
-    scene.add(camera);
+        // Create camera.
+        camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.set(0, 500, 1000);
+        scene.add(camera);
 
-    // link data_TV.csv with D3
-    d3.csv("data_TV.csv").then(function (data) {
         // Add objects to scene
         for (let i = 0; i < data.length; i++) {
             let pop = data[i].popularity;   // storing popularity value
@@ -39,86 +39,86 @@ function init() {
         ground.rotation.x = 1.5708;
         ground.position.set((baseLength/2)-100, 0, 0)
         scene.add(ground);
-    });
 
-    // Create lights and add to scene
-    let ambientLight = new THREE.AmbientLight(0x404040);                        // ambient light
-    scene.add(ambientLight);
-    let directionalLight = new THREE.DirectionalLight(0xffffff, 1.25);          // directional light 1
-    directionalLight.position.set(1, 1, 1).normalize();
-    scene.add(directionalLight);
-    directionalLight = new THREE.DirectionalLight(0xf7bd52, 0.75);              // directional light 2
-    directionalLight.position.set(1, 1, 1).normalize();
-    scene.add(directionalLight);
-    let hemisphereLight = new THREE.HemisphereLight(0x95ebf0, 0xed9118, 0.5);   // hemisphere light
-    scene.add(hemisphereLight);
+        // Create lights and add to scene
+        let ambientLight = new THREE.AmbientLight(0x404040);                        // ambient light
+        scene.add(ambientLight);
+        let directionalLight = new THREE.DirectionalLight(0xffffff, 1.25);          // directional light 1
+        directionalLight.position.set(1, 1, 1).normalize();
+        scene.add(directionalLight);
+        directionalLight = new THREE.DirectionalLight(0xf7bd52, 0.75);              // directional light 2
+        directionalLight.position.set(1, 1, 1).normalize();
+        scene.add(directionalLight);
+        let hemisphereLight = new THREE.HemisphereLight(0x95ebf0, 0xed9118, 0.5);   // hemisphere light
+        scene.add(hemisphereLight);
 
-    // Add listener for window resize.
-    window.addEventListener('resize', onWindowResize, false);
+        // Add listener for window resize.
+        window.addEventListener('resize', onWindowResize, false);
 
-    // Add listener for keyboard
-    document.body.addEventListener('keydown', onkeyPressed, false);
+        // Add listener for keyboard
+        document.body.addEventListener('keydown', onkeyPressed, false);
 
-    render();
-}
-function onkeyPressed(e) {
-    switch (e.key) {
-        case 'ArrowUp':
-            camera.position.z -= 100;
-            break;
-        case 'ArrowDown':
-            camera.position.z += 100;
-            break;
-        case 'ArrowLeft':
-            if (index > 0) {
-                camera.position.x -= 200;
-                index -= 1;
-                break;
-            }else{
-                break;
-            }
-        case 'ArrowRight':
-            if (index < 50) {
-                camera.position.x += 200;
-                index += 1;
-                break;
-            }else{
-                break;
-            }
-        case 'w':
-            camera.position.z -= 100;
-            break;
-        case 's':
-            camera.position.z += 100;
-            break;
-        case 'a':
-            if (index > 0) {
-                camera.position.x -= 200;
-                index -= 1;
-                break;
-            }else{
-                break;
-            }
-        case 'd':
-            if (index < 50) {
-                camera.position.x += 200;
-                index += 1;
-                break;
-            }else{
-                break;
-            }
+        render();
     }
-    e.preventDefault();
-    render();
-}
+    function onkeyPressed(e) {
+        switch (e.key) {
+            case 'ArrowUp':
+                camera.position.z -= 100;
+                break;
+            case 'ArrowDown':
+                camera.position.z += 100;
+                break;
+            case 'ArrowLeft':
+                if (index > 0) {
+                    camera.position.x -= 200;
+                    index -= 1;
+                    break;
+                }else{
+                    break;
+                }
+            case 'ArrowRight':
+                if (index < (data.length - 1)) {
+                    camera.position.x += 200;
+                    index += 1;
+                    break;
+                }else{
+                    break;
+                }
+            case 'w':
+                camera.position.z -= 100;
+                break;
+            case 's':
+                camera.position.z += 100;
+                break;
+            case 'a':
+                if (index > 0) {
+                    camera.position.x -= 200;
+                    index -= 1;
+                    break;
+                }else{
+                    break;
+                }
+            case 'd':
+                if (index < (data.length - 1)){
+                    camera.position.x += 200;
+                    index += 1;
+                    break;
+                }else{
+                    break;
+                }
+        }
+        e.preventDefault();
+        render();
+    }
 
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.render(scene, camera);
-}
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.render(scene, camera);
+    }
 
-function render() {
-    renderer.render(scene, camera);
-}
+    function render() {
+        renderer.render(scene, camera);
+    }
+});
