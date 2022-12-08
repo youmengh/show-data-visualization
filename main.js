@@ -72,6 +72,7 @@ d3.csv("data_TV.csv").then(function (data) {
                 if (index > 0) {
                     camera.position.x -= 200;
                     index -= 1;
+                    constructDes(data[index].name, data[index].first_air_date, data[index].popularity);
                     break;
                 } else {
                     break;
@@ -95,6 +96,7 @@ d3.csv("data_TV.csv").then(function (data) {
                 if (index > 0) {
                     camera.position.x -= 200;
                     index -= 1;
+                    constructDes(data[index].name, data[index].first_air_date, data[index].popularity);
                     break;
                 } else {
                     break;
@@ -103,6 +105,7 @@ d3.csv("data_TV.csv").then(function (data) {
                 if (index < (data.length - 1)) {
                     camera.position.x += 200;
                     index += 1;
+                    constructDes(data[index].name, data[index].first_air_date, data[index].popularity);
                     break;
                 } else {
                     break;
