@@ -134,9 +134,9 @@ d3.csv("data_TV.csv").then(function (data) {
         showDescriptions.style.width = 100;
         showDescriptions.style.height = 100;
         showDescriptions.style.backgroundColor = "blue";
-        showDescriptions.innerHTML = "Show Name: " + showName + "\n"
-            + "First Air Date: " + airDate + "\n"
-            + "Popularity: " + popValue;
+        showDescriptions.innerHTML = "<p>Show Name: " + showName + "</p>"
+            + "<p>First Air Date: " + airDate + "</p>"
+            + "<p>Popularity: " + popValue + "</p>";
         showDescriptions.style.top = 200 + 'px';
         showDescriptions.style.left = 200 + 'px';
         document.body.appendChild(showDescriptions);
