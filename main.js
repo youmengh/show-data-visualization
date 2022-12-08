@@ -1,6 +1,6 @@
 let camera, scene, renderer;
 let index = 0;
-let showDescriptions = document.createElement('div');
+var showDescriptions = document.createElement('div');
 
 // link data_TV.csv with D3
 d3.csv("data_TV.csv").then(function (data) {
@@ -139,7 +139,7 @@ d3.csv("data_TV.csv").then(function (data) {
             + "Popularity: " + popValue;
         showDescriptions.style.top = 200 + 'px';
         showDescriptions.style.left = 200 + 'px';
-        document.body.appendChild(text);
+        document.body.appendChild(showDescriptions);
     }
 
 });
