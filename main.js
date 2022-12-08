@@ -142,8 +142,8 @@ d3.csv("data_TV.csv").then(function (data) {
         showDescriptions.innerHTML = "<p>Show Name: " + showName + "</p>"
             + "<p>First Air Date: " + airDate + "</p>"
             + "<p>Popularity: " + popValue + "</p>";
-        showDescriptions.style.top = 800 + 'px';
-        showDescriptions.style.left = 850 + 'px';
+        showDescriptions.style.top = (window.innerHeight / 2) + 300 + 'px';
+        showDescriptions.style.left = (window.innerWidth / 2) - 100 + 'px';
         document.body.appendChild(showDescriptions);
     }
 
