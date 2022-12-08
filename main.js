@@ -7,7 +7,7 @@ d3.csv("data_TV.csv").then(function (data) {
     init();
 
     function init() {
-        alert(`3D Bar Graph of the Top 50 Most Popular Shows in the World.
+        alert(`3D Bar Graph of the "Top Rated TV Shows" Dataset
         Press OK to Begin`);
         // Renderer.
         renderer = new THREE.WebGLRenderer();
