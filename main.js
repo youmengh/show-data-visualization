@@ -69,28 +69,28 @@ function onMouseWheel(e) {
 function onkeyPressed(e) {
     switch (e.key) {
         case 'ArrowUp':
-            camera.rotateX(0.1);
+            camera.position.z -= 100;
             break;
         case 'ArrowDown':
-            camera.rotateX(-0.1);
+            camera.position.z += 100;
             break;
         case 'ArrowLeft':
-            camera.rotateY(0.1);
+            camera.position.x -= 100;
             break;
         case 'ArrowRight':
-            camera.rotateY(-0.1);
+            camera.position.x += 100;
             break;
         case 'w':
-            camera.position.z -= 10;
+            camera.position.z -= 100;
             break;
         case 's':
-            camera.position.z += 10;
+            camera.position.z += 100;
             break;
         case 'a':
-            camera.position.x -= 10;
+            camera.position.x -= 100;
             break;
         case 'd':
-            camera.position.x += 10;
+            camera.position.x += 100;
             break;
     }
     e.preventDefault();
