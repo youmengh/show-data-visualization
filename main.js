@@ -53,6 +53,9 @@ d3.csv("data_TV.csv").then(function (data) {
         let hemisphereLight = new THREE.HemisphereLight(0x95ebf0, 0xed9118, 0.5);   // hemisphere light
         scene.add(hemisphereLight);
 
+        // construct descriptions of first show 
+        constructDes(data[0].name, data[0].first_air_date, data[0].popularity);
+
         // Add listener for window resize.
         window.addEventListener('resize', onWindowResize, false);
 
@@ -127,7 +130,7 @@ d3.csv("data_TV.csv").then(function (data) {
         renderer.render(scene, camera);
     }
 
-    // Add show decriptions
+    // Add show descriptions
     function constructDes(showName, airDate, popValue) {
         showDescriptions.style.position = 'absolute';
         // showDescriptions.style.zIndex = 1;    // if label still missing, try uncommenting this
@@ -137,8 +140,8 @@ d3.csv("data_TV.csv").then(function (data) {
         showDescriptions.innerHTML = "<p>Show Name: " + showName + "</p>"
             + "<p>First Air Date: " + airDate + "</p>"
             + "<p>Popularity: " + popValue + "</p>";
-        showDescriptions.style.top = 200 + 'px';
-        showDescriptions.style.left = 200 + 'px';
+        showDescriptions.style.top = 800 + 'px';
+        showDescriptions.style.left = 850 + 'px';
         document.body.appendChild(showDescriptions);
     }
 
