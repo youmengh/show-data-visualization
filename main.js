@@ -53,7 +53,7 @@ d3.csv("data_TV.csv").then(function (data) {
         let hemisphereLight = new THREE.HemisphereLight(0x95ebf0, 0xed9118, 0.5);   // hemisphere light
         scene.add(hemisphereLight);
 
-        // construct descriptions of first show 
+        // construct descriptions of first show
         constructDes(data[0].name, data[0].first_air_date, data[0].popularity);
 
         // Add listener for window resize.
@@ -137,6 +137,8 @@ d3.csv("data_TV.csv").then(function (data) {
         showDescriptions.style.width = 100;
         showDescriptions.style.height = 100;
         showDescriptions.style.backgroundColor = "blue";
+        showDescriptions.style.backgroundColor = "gray";
+        showDescriptions.style.color = "white";
         showDescriptions.innerHTML = "<p>Show Name: " + showName + "</p>"
             + "<p>First Air Date: " + airDate + "</p>"
             + "<p>Popularity: " + popValue + "</p>";
