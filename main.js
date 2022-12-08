@@ -1,4 +1,5 @@
 let camera, scene, renderer;
+let index = 0;
 
 init();
 
@@ -58,12 +59,8 @@ function init() {
     // Add listener for keyboard
     document.body.addEventListener('keydown', onkeyPressed, false);
 
-    //document.addEventListener for mouse zoom;
-    document.addEventListener('wheel', onMouseWheel, false);
-
     render();
 }
-
 function onkeyPressed(e) {
     switch (e.key) {
         case 'ArrowUp':
@@ -73,11 +70,21 @@ function onkeyPressed(e) {
             camera.position.z += 100;
             break;
         case 'ArrowLeft':
-            camera.position.x -= 200;
-            break;
+            if (index > 0) {
+                camera.position.x -= 200;
+                index -= 1;
+                break;
+            }else{
+                break;
+            }
         case 'ArrowRight':
-            camera.position.x += 200;
-            break;
+            if (index < 50) {
+                camera.position.x += 200;
+                index += 1;
+                break;
+            }else{
+                break;
+            }
         case 'w':
             camera.position.z -= 100;
             break;
@@ -85,11 +92,21 @@ function onkeyPressed(e) {
             camera.position.z += 100;
             break;
         case 'a':
-            camera.position.x -= 100;
-            break;
+            if (index > 0) {
+                camera.position.x -= 200;
+                index -= 1;
+                break;
+            }else{
+                break;
+            }
         case 'd':
-            camera.position.x += 100;
-            break;
+            if (index < 50) {
+                camera.position.x += 200;
+                index += 1;
+                break;
+            }else{
+                break;
+            }
     }
     e.preventDefault();
     render();
