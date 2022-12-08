@@ -3,6 +3,7 @@ let camera, scene, renderer;
 init();
 
 function init() {
+    alert(`3D Bar Graph of the Top 50 Most Popular Shows in the World. Press Space to Begin`);
     // Renderer.
     renderer = new THREE.WebGLRenderer();
     // renderer.setPixelRatio(window.devicePixelRatio);
