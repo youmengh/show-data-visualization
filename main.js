@@ -62,10 +62,6 @@ function init() {
     render();
 }
 
-function onMouseWheel(e) {
-    camera.position.z += e.deltaY * 0.2;
-}
-
 function onkeyPressed(e) {
     switch (e.key) {
         case 'ArrowUp':
