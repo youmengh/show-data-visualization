@@ -28,6 +28,15 @@ function init() {
             mesh.position.set((200 * i), pop/2, 0);
             scene.add(mesh);
         }
+        // Add base (plane geometry object)
+        let baseLength = (data.length * 200);
+        var geometry = new THREE.PlaneGeometry((baseLength+200), 1000, 1, 1);
+        var material = new THREE.MeshBasicMaterial({ color: 0x808080 });
+        var ground = new THREE.Mesh(geometry, material);
+        ground.material.side = THREE.DoubleSide;
+        ground.rotation.x = 1.5708;
+        ground.position.set((baseLength/2)-100, 0, 0)
+        scene.add(ground);
     });
 
     // Create lights and add to scene
@@ -41,15 +50,6 @@ function init() {
     scene.add(directionalLight);
     var hemisphereLight = new THREE.HemisphereLight(0x95ebf0, 0xed9118, 0.5);   // hemisphere light
     scene.add(hemisphereLight);
-
-    // Add base (plane geometry object)
-    var geometry = new THREE.PlaneGeometry(5000, 1000, 1, 1);
-    var material = new THREE.MeshBasicMaterial({ color: 0x808080 });
-    var ground = new THREE.Mesh(geometry, material);
-    ground.material.side = THREE.DoubleSide;
-    ground.rotation.x = 1.5708;
-    ground.position.set(2300, 0, 0)
-    scene.add(ground);
 
     // Add listener for window resize.
     window.addEventListener('resize', onWindowResize, false);
