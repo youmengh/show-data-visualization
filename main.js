@@ -15,16 +15,16 @@ function init() {
 
     // Create camera.
     camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.set(0, 0, 1000);
+    camera.position.set(0, 500, 1000);
     scene.add(camera);
 
     // link data_TV.csv with D3
     d3.csv("data_TV.csv").then(function (data) {
         // Add objects to scene
         for (var i = 0; i < data.length; i++) {
-            let pop = data[i].popularity;
+            let pop = data[i].popularity;   // storing popularity value
             mesh = new THREE.Mesh(new THREE.BoxGeometry(100, pop, 100), new THREE.MeshPhongMaterial({ color: 0xff0000 }));
-            mesh.position.set((200 * i), -450, 0);
+            mesh.position.set((200 * i), pop/2, 0);
             scene.add(mesh);
         }
     });
@@ -47,7 +47,7 @@ function init() {
     var ground = new THREE.Mesh(geometry, material);
     ground.material.side = THREE.DoubleSide;
     ground.rotation.x = 1.5708;
-    ground.position.set(2300, -500, 0)
+    ground.position.set(2300, 0, 0)
     scene.add(ground);
 
     // Add listener for window resize.
