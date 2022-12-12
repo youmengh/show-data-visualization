@@ -12,5 +12,5 @@ Libraries used:
 * D3
 * ThreeJS. 
 
-(We had to cut out the D'amelio Show Due to Reasons Beyond Human Comprehension.)
+(We had to cut out the D'amelio Show due to reasons beyond human comprehension.)
 
